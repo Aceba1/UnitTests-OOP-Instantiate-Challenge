@@ -2,7 +2,7 @@ package com.aceba1.getQuote;
 
 public class RentRoomMenu extends CommandMenu<Hotel> {
 
-  Client tempClient = null;
+  private Client tempClient = null;
 
   static Client createClient() {
     return new Client(
@@ -36,9 +36,9 @@ public class RentRoomMenu extends CommandMenu<Hotel> {
         if (room.reserve(tempClient)) {
           hotel.clients.add(tempClient);
           System.out.println("Room " + roomNumber + " has been reserved!");
-          tempClient.prepaid += getNum(
-            "Add pre-payment? (0-$" + tempClient.currentBill + "): $",
-            0, tempClient.currentBill);
+          tempClient.makePayment(getNum(
+            "Add pre-payment? (0-$" + tempClient.getCurrentBill() + "): $",
+            0, tempClient.getCurrentBill()));
 
           tempClient = null;
           return;

@@ -2,12 +2,13 @@ package com.aceba1.getQuote;
 
 public class Client {
 
-  String name;
-  String phoneNumber;
-  int partySize;
+  private final String name;
+  private final String phoneNumber;
 
-  int currentBill;
-  int prepaid;
+  private final int partySize;
+
+  private int currentBill;
+  private int prepaid;
 
   Room room;
 
@@ -50,4 +51,17 @@ public class Client {
   public String getRoomType() {
     return room.getType();
   }
+
+
+  public String getName() { return name; }
+
+  public int getPartySize() { return partySize; }
+
+  public String getPhoneNumber() { return phoneNumber; }
+
+  public int getCurrentBill() { return currentBill; }
+
+  public int getPrepaid() { return prepaid; }
+
+  public Room getRoom() { return room; }
 }

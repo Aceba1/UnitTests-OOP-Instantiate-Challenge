@@ -9,8 +9,8 @@ public class StandardRoom extends Room {
 
   public static final int PARTY_ROOM_SIZE = 2;
 
-  int rooms;
-  int beds;
+  private final int rooms;
+  private final int beds;
 
   public int getAvailableSpace() {
     return beds * PARTY_ROOM_SIZE + rooms * PARTY_ROOM_SIZE;
@@ -41,8 +41,8 @@ public class StandardRoom extends Room {
   @Override
   public boolean reserve(Client client) {
     int space = getAvailableSpace();
-    if (client.partySize > space) { // client.partySize > beds * PARTY_ROOM_SIZE
-      System.out.println("Room is unavailable: Not enough space (" + client.partySize + " > " + space + ")");
+    if (client.getPartySize() > space) { // client.partySize > beds * PARTY_ROOM_SIZE
+      System.out.println("Room is unavailable: Not enough space (" + client.getPartySize() + " > " + space + ")");
       return false;
     }
     return super.reserve(client);
@@ -54,9 +54,9 @@ public class StandardRoom extends Room {
 
   @Override
   public String toString() {
-    return "StandardRoom " + number + " (price=$" + averagePrice + ", rooms=" + rooms + ", beds=" + beds + "): " +
-      (isOccupied ? "occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
-        (needsCleaning ? "needs cleaning" : "ready"));
+    return "StandardRoom " + getNumber() + " (price=$" + getAveragePrice() + ", rooms=" + rooms + ", beds=" + beds + "): " +
+      (isOccupied() ? "occupied (" + getOccupant().getName() + ", " + getOccupant().getPhoneNumber() +")" :
+        (getNeedsCleaning() ? "needs cleaning" : "ready"));
   }
 
   public int getRooms() {

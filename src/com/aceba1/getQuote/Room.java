@@ -6,14 +6,14 @@ public abstract class Room {
     return 0.00;
   }
 
-  int averagePrice;
-  int number;
-  int floor;
-  String type;
+  private final int averagePrice;
+  private final int number;
+  private final int floor;
+  private final String type;
 
-  boolean isOccupied;
-  boolean needsCleaning;
-  Client occupant;
+  private boolean isOccupied;
+  private boolean needsCleaning;
+  private Client occupant;
 
   public Room(int averagePrice, int number, int floor, String type) {
     this.averagePrice = averagePrice;
@@ -53,7 +53,7 @@ public abstract class Room {
   @Override
   public String toString() {
     return "Room " + number +
-      (isOccupied ? ": occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
+      (isOccupied ? ": occupied (" + occupant.getName() + ", " + occupant.getPhoneNumber() +")" :
         (needsCleaning ? ": needs cleaning" : ": ready"));
   }
 

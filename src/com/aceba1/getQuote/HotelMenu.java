@@ -2,10 +2,10 @@ package com.aceba1.getQuote;
 
 public class HotelMenu extends CommandMenu<Hotel> {
 
-  RoomsMenu roomsMenu = new RoomsMenu();
-  AddRoomMenu addRoomMenu = new AddRoomMenu();
-  RentRoomMenu rentRoomMenu = new RentRoomMenu();
-  ReturnRoomMenu returnRoomMenu = new ReturnRoomMenu();
+  private final RoomsMenu roomsMenu = new RoomsMenu();
+  private final AddRoomMenu addRoomMenu = new AddRoomMenu();
+  private final RentRoomMenu rentRoomMenu = new RentRoomMenu();
+  private final ReturnRoomMenu returnRoomMenu = new ReturnRoomMenu();
 
   static String getPrompt(Hotel h) {
     return "\n" + h.getName() + "\n" +

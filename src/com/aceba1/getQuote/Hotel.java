@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 public class Hotel {
 
-  String name;
-  int roomCount;
+  private final String name;
+  private int roomCount;
 
   Map<Integer, Room> allRooms = new HashMap<>();
   List<StandardRoom> availableStandards = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Hotel {
     } else {
       availableStandards.add((StandardRoom) room);
     }
-    allRooms.put(room.number, room);
+    allRooms.put(room.getNumber(), room);
     roomCount++;
   }
 
@@ -72,7 +72,7 @@ public class Hotel {
     if (room.getType().equals("suite")) {
       reserve = getFirst(availableSuites, room);
       if (reserve != null) {
-        clients.remove(reserve.occupant);
+        clients.remove(reserve.getOccupant());
         reserve.checkout();
         reservedSuites.add((SuiteRoom) reserve);
         availableSuites.remove(reserve);
@@ -80,7 +80,7 @@ public class Hotel {
     } else {
       reserve = getFirst(availableStandards, room);
       if (reserve != null) {
-        clients.remove(reserve.occupant);
+        clients.remove(reserve.getOccupant());
         reserve.checkout();
         reservedStandards.add((StandardRoom) reserve);
         availableStandards.remove(reserve);

@@ -7,11 +7,11 @@ public class SuiteRoom extends StandardRoom {
     return 0.08;
   }
 
-  boolean kitchenette;
-  boolean needsRestock;
+  private final boolean kitchenette;
 
   public SuiteRoom(int averagePrice, int number, int floor) {
     super(averagePrice, number, floor, 1, 1, "suite");
+  private boolean needsRestock;
     this.kitchenette = true;
   }
 
@@ -26,9 +26,10 @@ public class SuiteRoom extends StandardRoom {
 
   @Override
   public String toString() {
-    return "SuiteRoom " + number + " (price=$" + averagePrice + ", rooms=" + rooms + ", beds=" + beds + ", kitchenette="+ kitchenette + "): " +
-      (isOccupied ? "occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
-        (needsCleaning ? "needs cleaning" :
+    return "SuiteRoom " + getNumber() + " (price=$" + getAveragePrice() +
+      ", rooms=" + getRooms() + ", beds=" + getBeds() + ", kitchenette="+ kitchenette + "): " +
+      (isOccupied() ? "occupied (" + getOccupant().getName() + ", " + getOccupant().getPhoneNumber() +")" :
+        (getNeedsCleaning() ? "needs cleaning" :
           (needsRestock ? "needs restock" : "ready")));
   }
 

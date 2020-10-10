@@ -16,7 +16,7 @@ public class ReturnRoomMenu extends CommandMenu<Hotel> {
         System.out.println("Room is not occupied!");
       } else {
         String line = getLine("Enter client's name to confirm: ");
-        if (room.occupant.name.equals(line)) {
+        if (room.getOccupant().getName().equals(line)) {
           room.checkout();
           System.out.println(room +
             "\nCheckout complete!\n\nExamine the room number to handle maintenance");
