@@ -9,7 +9,6 @@ public class AddRoomMenu extends CommandMenu<Hotel> {
     return new StandardRoom(
       price,
       number,
-      number / 100,
       roomCount,
       bedCount);
   }
@@ -22,7 +21,6 @@ public class AddRoomMenu extends CommandMenu<Hotel> {
     return new SuiteRoom(
       price,
       number,
-      number / 100,
       roomCount,
       bedCount,
       kitchenette == 1);

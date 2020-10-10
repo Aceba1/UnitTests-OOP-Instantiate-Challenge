@@ -20,20 +20,20 @@ public class StandardRoom extends Room {
     return beds * PARTY_ROOM_SIZE;
   }
 
-  public StandardRoom(int averagePrice, int number, int floor) {
-    super(averagePrice, number, floor, "single");
+  public StandardRoom(int averagePrice, int number) {
+    super(averagePrice, number, "single");
     rooms = 1;
     beds = 1;
   }
 
-  public StandardRoom(int averagePrice, int number, int floor, int rooms, int beds) {
-    super(averagePrice, number, floor, "single");
+  public StandardRoom(int averagePrice, int number, int rooms, int beds) {
+    super(averagePrice, number, "single");
     this.rooms = rooms;
     this.beds = beds;
   }
 
-  protected StandardRoom(int averagePrice, int number, int floor, int rooms, int beds, String type) {
-    super(averagePrice, number, floor, type);
+  protected StandardRoom(int averagePrice, int number, int rooms, int beds, String type) {
+    super(averagePrice, number, type);
     this.rooms = rooms;
     this.beds = beds;
   }

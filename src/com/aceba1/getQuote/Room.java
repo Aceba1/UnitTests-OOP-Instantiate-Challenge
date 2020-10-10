@@ -15,10 +15,10 @@ public abstract class Room {
   private boolean needsCleaning;
   private Client occupant;
 
-  public Room(int averagePrice, int number, int floor, String type) {
+  public Room(int averagePrice, int number, String type) {
     this.averagePrice = averagePrice;
     this.number = number;
-    this.floor = floor;
+    this.floor = number / 100;
     this.type = type;
   }
 

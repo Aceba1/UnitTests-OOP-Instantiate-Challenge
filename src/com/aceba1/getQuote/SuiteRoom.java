@@ -9,14 +9,15 @@ public class SuiteRoom extends StandardRoom {
 
   private final boolean kitchenette;
 
-  public SuiteRoom(int averagePrice, int number, int floor) {
-    super(averagePrice, number, floor, 1, 1, "suite");
   private boolean needsRestock;
+
+  public SuiteRoom(int averagePrice, int number) {
+    super(averagePrice, number, 1, 1, "suite");
     this.kitchenette = true;
   }
 
-  public SuiteRoom(int averagePrice, int number, int floor, int rooms, int beds, boolean kitchenette) {
-    super(averagePrice, number, floor, rooms, beds, "suite");
+  public SuiteRoom(int averagePrice, int number, int rooms, int beds, boolean kitchenette) {
+    super(averagePrice, number, rooms, beds, "suite");
     this.kitchenette = kitchenette;
   }
 
