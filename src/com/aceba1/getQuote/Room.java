@@ -2,6 +2,10 @@ package com.aceba1.getQuote;
 
 public abstract class Room {
 
+  public double getFee() {
+    return 0.00;
+  }
+
   int averagePrice;
   int number;
   int floor;
@@ -26,6 +30,7 @@ public abstract class Room {
     isOccupied = true;
     occupant = client;
     client.room = this;
+    client.chargeRoom((int)CalculatePrice.getPrice(this)); // For sanity
     return true;
   }
 

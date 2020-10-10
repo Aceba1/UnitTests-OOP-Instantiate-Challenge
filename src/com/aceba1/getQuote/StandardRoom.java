@@ -2,13 +2,22 @@ package com.aceba1.getQuote;
 
 public class StandardRoom extends Room {
 
+  @Override
+  public double getFee() {
+    return 0.05;
+  }
+
   public static final int PARTY_ROOM_SIZE = 2;
 
   int rooms;
   int beds;
 
   public int getAvailableSpace() {
-    return beds * 2 + rooms * 2;
+    return beds * PARTY_ROOM_SIZE + rooms * PARTY_ROOM_SIZE;
+  }
+
+  public int getRecommendedSpace() {
+    return beds * PARTY_ROOM_SIZE;
   }
 
   public StandardRoom(int averagePrice, int number, int floor) {
@@ -36,6 +45,10 @@ public class StandardRoom extends Room {
       System.out.println("Room is unavailable: Not enough space (" + client.partySize + " > " + space + ")");
       return false;
     }
+    return super.reserve(client);
+  }
+
+  protected boolean reserveIgnoreSpace(Client client) {
     return super.reserve(client);
   }
 

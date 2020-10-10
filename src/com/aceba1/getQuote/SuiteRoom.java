@@ -2,6 +2,11 @@ package com.aceba1.getQuote;
 
 public class SuiteRoom extends StandardRoom {
 
+  @Override
+  public double getFee() {
+    return 0.08;
+  }
+
   boolean kitchenette;
   boolean needsRestock;
 
@@ -33,7 +38,7 @@ public class SuiteRoom extends StandardRoom {
       System.out.println("Unavailable: Needs restock");
       return false;
     }
-    return super.reserve(client);
+    return reserveIgnoreSpace(client);
   }
 
   @Override
