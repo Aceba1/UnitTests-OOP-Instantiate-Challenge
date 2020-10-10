@@ -41,7 +41,7 @@ public class StandardRoom extends Room {
 
   @Override
   public String toString() {
-    return "StandardRoom " + number + " (rooms=" + rooms + ", beds=" + beds + "): " +
+    return "StandardRoom " + number + " (price=$" + averagePrice + ", rooms=" + rooms + ", beds=" + beds + "): " +
       (isOccupied ? "occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
         (needsCleaning ? "needs cleaning" : "ready"));
   }

@@ -14,9 +14,6 @@ public class RentRoomMenu extends CommandMenu<Hotel> {
 
   @Override
   void drawMenu(Hotel hotel) {
-//    switch(getNum(
-//      "[0]New or [1]Existing client? : ", 0, 1)) {
-//      case 0:
     if (tempClient != null) {
       System.out.println("\nClient still in session: " + tempClient.name + ", Party: " + tempClient.partySize);
       if (getNum("[0]New client, or [1]Existing session? : ", 0, 1) == 0)

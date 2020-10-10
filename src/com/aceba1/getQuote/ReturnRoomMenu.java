@@ -12,11 +12,15 @@ public class ReturnRoomMenu extends CommandMenu<Hotel> {
       Room room = hotel.getRoom(roomNumber);
       if (room == null) {
         System.out.println("Room does not exist!");
+      } else if (!room.isOccupied()) {
+        System.out.println("Room is not occupied!");
       } else {
         String line = getLine("Enter client's name to confirm: ");
         if (room.occupant.name.equals(line)) {
           room.checkout();
-
+          System.out.println(room +
+            "\nCheckout complete!\n\nExamine the room number to handle maintenance");
+          return;
         } else {
           System.out.println("Name does not match!");
         }

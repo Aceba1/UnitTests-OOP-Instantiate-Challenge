@@ -5,7 +5,7 @@ public class AddRoomMenu extends CommandMenu<Hotel> {
   static StandardRoom createStandardRoom(int number) {
     int price = getNum("Pricing: $", 15, 1000000);
     int roomCount = getNum("Room Count: ", 1, 16);
-    int bedCount = getNum("Beds per room: ", 1, 8);
+    int bedCount = getNum("Total beds: ", 1, 32);
     return new StandardRoom(
       price,
       number,
@@ -17,7 +17,7 @@ public class AddRoomMenu extends CommandMenu<Hotel> {
   static SuiteRoom createSuiteRoom(int number) {
     int price = getNum("Pricing: $", 15, 1000000);
     int roomCount = getNum("Room Count: ", 1, 16);
-    int bedCount = getNum("Beds per room: ", 1, 8);
+    int bedCount = getNum("Total Beds: ", 1, 32);
     int kitchenette = getNum("Kitchenette? (1-0): ", 0, 1);
     return new SuiteRoom(
       price,

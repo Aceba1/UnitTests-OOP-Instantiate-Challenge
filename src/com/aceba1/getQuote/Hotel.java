@@ -84,7 +84,7 @@ public class Hotel {
     return list.stream()
       .filter(r -> r.equals(comparison))
       .findFirst()
-      .get();
+      .orElse(null);
   }
 
   public Map<Integer, List<Integer>> getFloors() {

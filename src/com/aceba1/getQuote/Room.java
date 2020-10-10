@@ -30,10 +30,10 @@ public abstract class Room {
   }
 
   public void checkout() {
+    System.out.println("Outstanding price: $" + occupant.getOutstanding());
     occupant = null;
     isOccupied = false;
     needsCleaning = true;
-    System.out.println("price: $" + averagePrice);
   }
 
   public void clean() {
