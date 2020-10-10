@@ -7,6 +7,10 @@ public class StandardRoom extends Room {
   int rooms;
   int beds;
 
+  public int getAvailableSpace() {
+    return beds * 2 + rooms * 2;
+  }
+
   public StandardRoom(int averagePrice, int number, int floor) {
     super(averagePrice, number, floor, "single");
     rooms = 1;
@@ -27,8 +31,9 @@ public class StandardRoom extends Room {
 
   @Override
   public boolean reserve(Client client) {
-    if (client.partySize > beds * PARTY_ROOM_SIZE) {
-      System.out.println("Room is unavailable: Not enough rooms");
+    int space = getAvailableSpace();
+    if (client.partySize > space) { // client.partySize > beds * PARTY_ROOM_SIZE
+      System.out.println("Room is unavailable: Not enough space (" + client.partySize + " > " + space + ")");
       return false;
     }
     return super.reserve(client);
@@ -36,10 +41,9 @@ public class StandardRoom extends Room {
 
   @Override
   public String toString() {
-    return "StandardRoom{" +
-      "rooms=" + rooms +
-      ", beds=" + beds +
-      "} " + super.toString();
+    return "StandardRoom " + number + " (rooms=" + rooms + ", beds=" + beds + "): " +
+      (isOccupied ? "occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
+        (needsCleaning ? "needs cleaning" : "ready"));
   }
 
   public int getRooms() {

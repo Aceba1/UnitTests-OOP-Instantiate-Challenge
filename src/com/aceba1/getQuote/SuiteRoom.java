@@ -21,10 +21,10 @@ public class SuiteRoom extends StandardRoom {
 
   @Override
   public String toString() {
-    return "SuiteRoom{" +
-      "kitchenette=" + kitchenette +
-      ", needsRestock=" + needsRestock +
-      "} " + super.toString();
+    return "SuiteRoom " + number + " (rooms=" + rooms + ", beds=" + beds + ", kitchenette="+ kitchenette + "): " +
+      (isOccupied ? "occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
+        (needsCleaning ? "needs cleaning" :
+          (needsRestock ? "needs restock" : "ready")));
   }
 
   @Override
@@ -44,11 +44,11 @@ public class SuiteRoom extends StandardRoom {
 
 
 
-  public boolean isKitchenette() {
+  public boolean hasKitchenette() {
     return kitchenette;
   }
 
-  public boolean isNeedsRestock() {
+  public boolean getNeedsRestock() {
     return needsRestock;
   }
 }

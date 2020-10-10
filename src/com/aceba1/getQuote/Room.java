@@ -25,6 +25,7 @@ public abstract class Room {
     }
     isOccupied = true;
     occupant = client;
+    client.room = this;
     return true;
   }
 
@@ -46,15 +47,9 @@ public abstract class Room {
 
   @Override
   public String toString() {
-    return "Room{" +
-      "averagePrice=" + averagePrice +
-      ", number=" + number +
-      ", floor=" + floor +
-      ", type='" + type + '\'' +
-      ", isOccupied=" + isOccupied +
-      ", needsCleaning=" + needsCleaning +
-      ", occupant=" + occupant +
-      '}';
+    return "Room " + number +
+      (isOccupied ? ": occupied (" + occupant.name + ", " + occupant.phoneNumber +")" :
+        (needsCleaning ? ": needs cleaning" : ": ready"));
   }
 
   public int getAveragePrice() {
@@ -77,7 +72,7 @@ public abstract class Room {
     return isOccupied;
   }
 
-  public boolean isNeedsCleaning() {
+  public boolean getNeedsCleaning() {
     return needsCleaning;
   }
 

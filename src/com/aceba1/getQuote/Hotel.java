@@ -1,14 +1,14 @@
 package com.aceba1.getQuote;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Hotel {
 
-  String name = "Hotel Java";
-  int rooms = 0;
+  String name;
+  int roomCount;
 
+  Map<Integer, Room> allRooms = new HashMap<>();
   List<StandardRoom> availableStandards = new ArrayList<>();
   List<StandardRoom> reservedStandards = new ArrayList<>();
   List<SuiteRoom> availableSuites = new ArrayList<>();
@@ -16,6 +16,7 @@ public class Hotel {
   List<Client> clients = new ArrayList<>();
 
   public Hotel(String name, Room... rooms) {
+    this.name = name;
     for (var room : rooms) {
       addRoom(room);
     }
@@ -27,7 +28,8 @@ public class Hotel {
     } else {
       availableStandards.add((StandardRoom) room);
     }
-    rooms++;
+    allRooms.put(room.number, room);
+    roomCount++;
   }
 
   public void reserveRoom(Room room, Client client) {
@@ -49,6 +51,18 @@ public class Hotel {
     } catch(NoSuchElementException E) {
       System.out.println("Unavailable: Room does not exist");
     }
+  }
+
+  public Room getRoom(int number) {
+    return allRooms.get(number);
+  }
+
+  public boolean hasRoom(int number) {
+    return allRooms.containsKey(number);
+  }
+
+  public Room getRoom(Integer number) {
+    return allRooms.get(number);
   }
 
   public void checkoutRoom(Room room) {
@@ -73,19 +87,46 @@ public class Hotel {
       .get();
   }
 
+  public Map<Integer, List<Integer>> getFloors() {
+    return allRooms.keySet().stream()
+      .collect(Collectors.groupingBy(r -> r / 100));
+  }
+
+  public List<Integer> getFloor(int floor) {
+    return allRooms.keySet().stream()
+      .filter(r -> (r / 100) == floor)
+      .collect(Collectors.toList());
+  }
+
   public String getName() {
     return name;
   }
 
-  public int getRooms() {
-    return rooms;
+  public int getRoomCount() {
+    return roomCount;
+  }
+
+  public int getOccupiedRooms() {
+    return reservedSuites.size() + reservedStandards.size();
+  }
+
+  public int getAvailableRooms() {
+    return availableSuites.size() + availableStandards.size();
+  }
+
+  public int getAvailableStandards() {
+    return availableStandards.size();
+  }
+
+  public int getAvailableSuites() {
+    return availableSuites.size();
   }
 
   @Override
   public String toString() {
     return "Hotel{" +
       "name='" + name + '\'' +
-      ", rooms=" + rooms +
+      ", rooms=" + roomCount +
       ", availableStandards=" + availableStandards +
       ", reservedStandards=" + reservedStandards +
       ", availableSuites=" + availableSuites +

@@ -9,8 +9,13 @@ public class Client {
   int currentBill;
   int prepaid;
 
-  int roomNumber;
-  String roomType;
+  Room room;
+
+  public Client(String name, String phoneNumber, int partySize) {
+    this.name = name;
+    this.phoneNumber = phoneNumber;
+    this.partySize = partySize;
+  }
 
   @Override
   public String toString() {
@@ -20,8 +25,9 @@ public class Client {
       ", partySize=" + partySize +
       ", currentBill=" + currentBill +
       ", prepaid=" + prepaid +
-      ", roomNumber=" + roomNumber +
-      ", roomType='" + roomType + '\'' +
+      ", outstanding=" + getOutstanding() +
+      ", roomNumber=" + getRoomNumber() +
+      ", roomType='" + getRoomType() + '\'' +
       '}';
   }
 
@@ -35,5 +41,13 @@ public class Client {
 
   public int getOutstanding() {
     return currentBill - prepaid;
+  }
+
+  public int getRoomNumber() {
+    return room.getNumber();
+  }
+
+  public String getRoomType() {
+    return room.getType();
   }
 }
