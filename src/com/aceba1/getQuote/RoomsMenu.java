@@ -11,7 +11,7 @@ public class RoomsMenu extends CommandMenu<Hotel> {
 
   private void setFloorNamesCache(){
     floorNamesCache = floorCache.keySet().stream()
-      .map(r -> r.toString())
+      .map(Object::toString)
       .collect(Collectors.joining(", "));
   }
 
@@ -30,12 +30,12 @@ public class RoomsMenu extends CommandMenu<Hotel> {
       return;
     }
     while(true) {
-      switch(getNum(getPrompt(), 0, 2)) {
-        case 0:
+      switch (getNum(getPrompt(), 0, 2)) {
+        case 0 -> {
           floorCache = null;
           return;
-
-        case 1:
+        }
+        case 1 -> {
           var room = hotel.getRoom(getNum("Room number: "));
           if (room == null)
             System.out.println("Room does not exist");
@@ -58,24 +58,20 @@ public class RoomsMenu extends CommandMenu<Hotel> {
               }
             }
           }
-          break;
-
-        case 2:
+        }
+        case 2 -> {
           if (floorCache == null) {
             floorCache = hotel.getFloors();
             setFloorNamesCache();
           }
           System.out.println("Floors: " + floorNamesCache);
           int floor;
-
           if (floorCache.size() != 1) {
             floor = getNum("\nFloor level: ");
           } else {
             floor = floorCache.keySet().stream().findFirst().get();
           }
           List<Integer> rooms = floorCache.get(floor);
-
-
           if (rooms == null)
             System.out.println("Floor " + floor + " undefined");
           else {
@@ -83,7 +79,7 @@ public class RoomsMenu extends CommandMenu<Hotel> {
             for (Integer i : rooms) // Keep it in boxing
               System.out.println(hotel.getRoom(i));
           }
-          break;
+        }
       }
     }
   }

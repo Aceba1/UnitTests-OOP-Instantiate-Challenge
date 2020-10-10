@@ -49,8 +49,6 @@ public class SuiteRoom extends StandardRoom {
     super.checkout();
   }
 
-
-
   public boolean hasKitchenette() {
     return kitchenette;
   }
