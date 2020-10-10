@@ -5,6 +5,7 @@ public class HotelMenu extends CommandMenu<Hotel> {
   RoomsMenu roomsMenu = new RoomsMenu();
   AddRoomMenu addRoomMenu = new AddRoomMenu();
   RentRoomMenu rentRoomMenu = new RentRoomMenu();
+  ReturnRoomMenu returnRoomMenu = new ReturnRoomMenu();
 
   static String getPrompt(Hotel h) {
     return "\n" + h.getName() + "\n" +
@@ -34,6 +35,10 @@ public class HotelMenu extends CommandMenu<Hotel> {
 
         case 3:
           rentRoomMenu.drawMenu(trivago);
+          break;
+
+        case 4:
+          returnRoomMenu.drawMenu(trivago);
           break;
       }
     }
