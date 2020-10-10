@@ -40,12 +40,14 @@ public class Hotel {
         if (reserve.reserve(client)) {
           reservedSuites.add((SuiteRoom) reserve);
           availableSuites.remove(reserve);
+          clients.add(client);
         }
       } else {
         reserve = getFirst(availableStandards, room);
         if (reserve.reserve(client)) {
           reservedStandards.add((StandardRoom) reserve);
           availableStandards.remove(reserve);
+          clients.add(client);
         }
       }
     } catch(NoSuchElementException E) {
@@ -69,14 +71,20 @@ public class Hotel {
     Room reserve;
     if (room.getType().equals("suite")) {
       reserve = getFirst(availableSuites, room);
-      reserve.checkout();
-      reservedSuites.add((SuiteRoom) reserve);
-      availableSuites.remove(reserve);
+      if (reserve != null) {
+        clients.remove(reserve.occupant);
+        reserve.checkout();
+        reservedSuites.add((SuiteRoom) reserve);
+        availableSuites.remove(reserve);
+      }
     } else {
       reserve = getFirst(availableStandards, room);
-      reserve.checkout();
-      reservedStandards.add((StandardRoom) reserve);
-      availableStandards.remove(reserve);
+      if (reserve != null) {
+        clients.remove(reserve.occupant);
+        reserve.checkout();
+        reservedStandards.add((StandardRoom) reserve);
+        availableStandards.remove(reserve);
+      }
     }
   }
 
