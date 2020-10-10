@@ -3,6 +3,7 @@ package com.aceba1.getQuote;
 public class HotelMenu extends CommandMenu<Hotel> {
 
   RoomsMenu roomsMenu = new RoomsMenu();
+  AddRoomMenu addRoomMenu = new AddRoomMenu();
 
   static String getPrompt(Hotel h) {
     return "\n" + h.getName() + "\n" +
@@ -24,6 +25,10 @@ public class HotelMenu extends CommandMenu<Hotel> {
 
         case 1:
           roomsMenu.drawMenu(trivago);
+          break;
+
+        case 2:
+          addRoomMenu.drawMenu(trivago);
           break;
       }
     }
