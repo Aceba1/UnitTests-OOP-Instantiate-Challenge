@@ -35,11 +35,11 @@ public class RentRoomMenu extends CommandMenu<Hotel> {
         System.out.println(room);
         if (room.reserve(tempClient)) {
           hotel.clients.add(tempClient);
+          hotel.reserveRoom(room, tempClient);
           System.out.println("Room " + roomNumber + " has been reserved!");
           tempClient.makePayment(getNum(
             "Add pre-payment? (0-$" + tempClient.getCurrentBill() + "): $",
             0, tempClient.getCurrentBill()));
-
           tempClient = null;
           return;
         }
